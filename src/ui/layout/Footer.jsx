@@ -2,7 +2,7 @@ import Logo from "../shared/Logo";
 
 const Footer = () => {
   return (
-    <footer className="footer footer-horizontal footer-center p-10">
+    <footer className="footer footer-horizontal footer-center bg-base-100 p-10 rounded-xl">
       <aside>
         <Logo />
         <p className="font-bold">
