@@ -1,7 +1,7 @@
 import { NavLink } from "react-router";
 import { MdMenu } from "react-icons/md";
 
-import Logo from "../Logo";
+import Logo from "../shared/Logo";
 
 const navLinks = (
   <>
