@@ -30,8 +30,8 @@ const howItWorksData = [
 
 const HowItWorks = () => {
   return (
-    <div className="p-10">
-      <h2 className="text-3xl text-accent-content font-bold mb-6">
+    <div className="space-y-4">
+      <h2 className="text-3xl text-center text-accent-content/80 font-bold">
         How it Works
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
