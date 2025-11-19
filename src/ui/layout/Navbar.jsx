@@ -3,18 +3,19 @@ import { MdMenu } from "react-icons/md";
 
 import Logo from "../shared/Logo";
 
-const navLinks = (
-  <>
-    <li>
-      <NavLink to="/">Home</NavLink>
-    </li>
-    <li>
-      <NavLink to="/about">About</NavLink>
-    </li>
-  </>
-);
+const navLinksData = [
+  { path: "/", label: "Home" },
+  { path: "/coverage", label: "Coverage" },
+  { path: "/about", label: "About" },
+];
 
 const Navbar = () => {
+  const navLinks = navLinksData.map((link, index) => (
+    <li key={index}>
+      <NavLink to={link.path}>{link.label}</NavLink>
+    </li>
+  ));
+
   return (
     <div className="navbar bg-base-100 shadow-sm rounded-xl">
       <div className="navbar-start gap-2">
