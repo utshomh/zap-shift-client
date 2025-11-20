@@ -5,21 +5,17 @@ import Logo from "../ui/shared/Logo";
 
 const AuthLayout = () => {
   return (
-    <div>
+    <>
       <Logo />
-      <div className="flex flex-col-reverse md:flex-row items-center justify-center mx-auto gap-6">
-        <div className="w-full md:w-1/2 max-w-md">
+      <div className="flex-1 flex flex-col-reverse md:flex-row items-center justify-center mx-auto gap-6">
+        <div className="w-full md:w-1/2 max-w-sm">
           <Outlet />
         </div>
-        <div className="w-1/2 max-w-md">
-          <img
-            src={authImage}
-            alt="Satisfied User's Image"
-            className="aspect-square w-full h-auto  object-cover"
-          />
+        <div className="flex items-center justify-center w-full md:w-1/2">
+          <img src={authImage} className="w-full object-contain" />
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
