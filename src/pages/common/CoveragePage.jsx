@@ -5,7 +5,7 @@ import "leaflet/dist/leaflet.css";
 
 const defaultPosition = [23.685, 90.3563];
 
-const Coverage = () => {
+const CoveragePage = () => {
   const warehouses = useLoaderData();
   const [position, setPosition] = useState(defaultPosition);
   const searchInputRef = useRef();
@@ -16,6 +16,7 @@ const Coverage = () => {
     const warehouse = warehouses.find((warehouse) =>
       warehouse.district.toLowerCase().includes(searchTerm.toLowerCase())
     );
+
     setPosition(
       warehouse ? [warehouse.latitude, warehouse.longitude] : defaultPosition
     );
@@ -70,4 +71,4 @@ const Coverage = () => {
   );
 };
 
-export default Coverage;
+export default CoveragePage;
