@@ -1,17 +1,30 @@
 import { Link } from "react-router";
 import { useForm } from "react-hook-form";
 
+import useAuth from "../../hooks/useAuth";
+import alert from "../../lib/alert";
+
 const LoginPage = () => {
   const {
     register,
     handleSubmit,
     reset,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm();
+  const { loginUser } = useAuth();
 
-  const handleLogin = (data) => {
-    console.log(data);
-    reset();
+  const handleLogin = async (data) => {
+    const { email, password } = data;
+    try {
+      await loginUser(email, password);
+      alert.success("Logged In!", "You’ve signed in successfully.");
+      reset();
+    } catch (error) {
+      alert.error(
+        "Oops!",
+        error.message || "Something went wrong! Please try again."
+      );
+    }
   };
 
   return (
@@ -71,8 +84,14 @@ const LoginPage = () => {
             </Link>
           </p>
 
-          <button type="submit" className="btn btn-neutral w-full">
-            Login
+          <button
+            type="submit"
+            className={`btn w-full ${
+              isSubmitting ? "btn-disabled cursor-not-allowed" : "btn-neutral"
+            }`}
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? "Login in..." : "Login"}
           </button>
         </fieldset>
       </form>

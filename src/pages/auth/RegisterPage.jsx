@@ -21,14 +21,13 @@ const RegisterPage = () => {
         "Registered!",
         "Your account has been created successfully."
       );
+      reset();
     } catch (error) {
       alert.error(
         "Oops!",
         error.message || "Something went wrong! Please try again."
       );
     }
-
-    reset();
   };
 
   return (
