@@ -3,7 +3,7 @@ import { MdMenu } from "react-icons/md";
 import { PiArrowUpRightFill } from "react-icons/pi";
 
 import useAuth from "../../hooks/useAuth";
-import alert from "../../lib/alert";
+import alert from "../../lib/utils/alert";
 import Logo from "../shared/Logo";
 
 const navLinksData = [

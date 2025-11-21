@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 
 import { uploadImage } from "../../services/imgbb";
 import useAuth from "../../hooks/useAuth";
-import alert from "../../lib/alert";
+import alert from "../../lib/utils/alert";
 import SocialLogin from "../../ui/auth/SocialLogin";
 
 const RegisterPage = () => {

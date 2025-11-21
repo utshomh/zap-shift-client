@@ -2,7 +2,7 @@ import { useLocation, useNavigate } from "react-router";
 import { FcGoogle } from "react-icons/fc";
 
 import useAuth from "../../hooks/useAuth";
-import alert from "../../lib/alert";
+import alert from "../../lib/utils/alert";
 
 const SocialLogin = () => {
   const { signInWithGoogle } = useAuth();

@@ -1,6 +1,9 @@
 import { useForm, useWatch } from "react-hook-form";
 import { useLoaderData } from "react-router";
 
+import calculateCharge from "../../lib/utils/calculateCharge";
+import alert from "../../lib/utils/alert";
+
 const SendParcelPage = () => {
   const {
     register,
@@ -21,8 +24,18 @@ const SendParcelPage = () => {
       .map((warehouse) => warehouse.district);
 
   const sendParcel = async (data) => {
-    console.log(data);
-    reset();
+    const isDocument = data.parcelType === "document";
+    const isSameCity = data.senderDistrict === data.receiverDistrict;
+    const weight = data.parcelWeight;
+    const charge = calculateCharge({ isDocument, isSameCity, weight });
+    await alert.confirm(
+      "Agree with the cost?",
+      `Your parcel delivery charge will be: ${charge}. Do you wanna proceed?`,
+      async () => {
+        alert.success("Added!", "Successfully added your parcel.");
+        reset();
+      }
+    );
   };
 
   return (
