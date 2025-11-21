@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { useForm } from "react-hook-form";
 
 import useAuth from "../../hooks/useAuth";
@@ -13,6 +13,8 @@ const LoginPage = () => {
     formState: { errors, isSubmitting },
   } = useForm();
   const { loginUser } = useAuth();
+  const navigate = useNavigate();
+  const { state } = useLocation();
 
   const handleLogin = async (data) => {
     const { email, password } = data;
@@ -20,6 +22,7 @@ const LoginPage = () => {
       await loginUser(email, password);
       alert.success("Logged In!", "You’ve signed in successfully.");
       reset();
+      navigate(state?.redirect || "/");
     } catch (error) {
       alert.error(
         "Oops!",

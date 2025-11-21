@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router";
 
 import * as warehouses from "../lib/api/warehouses";
+import PrivateRoute from "./PrivateRoute";
 // Layouts
 import DefaultLayout from "../layouts/DefaultLayout";
 import RootLayout from "../layouts/RootLayout";
@@ -11,14 +12,16 @@ import CoveragePage from "../pages/common/CoveragePage";
 // Auth Pages
 import LoginPage from "../pages/auth/LoginPage";
 import RegisterPage from "../pages/auth/RegisterPage";
-// Error Page
+// Special Pages
 import ErrorPage from "../pages/error/ErrorPage";
+import LoadingPage from "../pages/common/LoadingPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <DefaultLayout />,
     errorElement: <ErrorPage />,
+    hydrateFallbackElement: <LoadingPage />,
     children: [
       {
         path: "/",
@@ -29,6 +32,14 @@ const router = createBrowserRouter([
             path: "coverage",
             element: <CoveragePage />,
             loader: warehouses.getAll,
+          },
+          {
+            path: "be-a-rider",
+            element: (
+              <PrivateRoute>
+                <LoadingPage />
+              </PrivateRoute>
+            ),
           },
         ],
       },

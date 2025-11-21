@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { useForm } from "react-hook-form";
 
 import useAuth from "../../hooks/useAuth";
@@ -13,6 +13,8 @@ const RegisterPage = () => {
     formState: { errors, isSubmitting },
   } = useForm();
   const { registerUser } = useAuth();
+  const navigate = useNavigate();
+  const { state } = useLocation();
 
   const handleRegister = async (data) => {
     const { email, password } = data;
@@ -23,6 +25,7 @@ const RegisterPage = () => {
         "Your account has been created successfully."
       );
       reset();
+      navigate(state?.redirect || "/");
     } catch (error) {
       alert.error(
         "Oops!",
