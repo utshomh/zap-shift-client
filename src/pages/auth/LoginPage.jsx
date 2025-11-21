@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 
 import useAuth from "../../hooks/useAuth";
 import alert from "../../lib/alert";
+import SocialLogin from "../../ui/auth/SocialLogin";
 
 const LoginPage = () => {
   const {
@@ -93,6 +94,8 @@ const LoginPage = () => {
           >
             {isSubmitting ? "Login in..." : "Login"}
           </button>
+
+          <SocialLogin />
         </fieldset>
       </form>
     </div>
