@@ -25,11 +25,11 @@ const CoveragePage = () => {
 
   return (
     <div className="space-y-4">
-      <h2 className="text-3xl font-bold text-center text-base-content/75">
+      <h2 className="text-3xl font-bold text-center text-base-content">
         We are Everywhere
       </h2>
 
-      <p className="text-center text-base-content/55">
+      <p className="text-center">
         We have warehouse in every single city of Bangladesh.
       </p>
 

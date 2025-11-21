@@ -56,11 +56,11 @@ const faqs = [
 const FAQ = () => {
   return (
     <div className="p-4 space-y-4">
-      <h2 className="text-3xl font-bold text-center text-base-content/75">
+      <h2 className="text-3xl font-bold text-center text-base-content">
         Frequently Asked Questions
       </h2>
 
-      <p className="text-center text-base-content/55">
+      <p className="text-center">
         Find answers to the most common questions about your account and our
         services.
       </p>

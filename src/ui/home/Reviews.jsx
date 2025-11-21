@@ -13,10 +13,8 @@ const Reviews = ({ loader }) => {
   return (
     <div className="space-y-4">
       <div className="text-center space-y-2">
-        <h3 className="text-3xl font-bold text-base-content/75">Reviews</h3>
-        <p className="text-base-content/50">
-          Read what our Customers got to say about us.
-        </p>
+        <h3 className="text-3xl font-bold text-base-content">Reviews</h3>
+        <p>Read what our Customers got to say about us.</p>
       </div>
 
       <Swiper

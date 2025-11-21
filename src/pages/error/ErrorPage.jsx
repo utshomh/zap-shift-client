@@ -23,7 +23,7 @@ export default function ErrorPage() {
         </h2>
 
         <p
-          className="text-center text-base-content/75 max-w-md"
+          className="text-center max-w-md"
           initial={{ opacity: 0, y: 25 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.25 }}

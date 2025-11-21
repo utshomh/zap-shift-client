@@ -7,12 +7,15 @@ const AuthLayout = () => {
   return (
     <>
       <Logo />
-      <div className="flex-1 flex flex-col-reverse md:flex-row items-center justify-center mx-auto gap-6">
-        <div className="w-full md:w-1/2 max-w-sm">
+      <div className="my-auto mx-auto w-fit flex flex-col-reverse md:flex-row items-center md:items-start justify-center gap-6">
+        <div className="flex-1 w-full max-w-md">
           <Outlet />
         </div>
-        <div className="flex items-center justify-center w-full md:w-1/2">
-          <img src={authImage} className="w-full object-contain" />
+        <div className="w-full flex-1">
+          <img
+            src={authImage}
+            className="max-h-[640px] w-auto object-contain"
+          />
         </div>
       </div>
     </>

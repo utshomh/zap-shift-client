@@ -23,7 +23,7 @@ const brands = [
 const Brands = () => {
   return (
     <div className="w-full mx-auto py-10 space-y-6">
-      <h2 className="text-3xl text-center font-bold text-base-content/75">
+      <h2 className="text-3xl text-center font-bold text-base-content">
         We've helped thousands of sales teams
       </h2>
       <Swiper

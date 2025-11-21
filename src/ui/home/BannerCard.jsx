@@ -5,15 +5,15 @@ import { Link } from "react-router";
 
 const BannerCard = ({ img, title, subtitle }) => {
   return (
-    <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-12 bg-base-100 p-12 rounded-2xl">
+    <div className="relative h-full my-auto grid grid-cols-1 lg:grid-cols-2 gap-12 bg-base-100 p-12 rounded-2xl">
       <div className="flex flex-col items-center lg:items-start text-center lg:text-start space-y-4 z-10">
         <div className="aspect-video w-1/3 lg:w-1/2 h-auto">
           <img src={tinyDeliveryman} className="h-full w-full object-contain" />
         </div>
-        <h1 className="text-5xl font-bold">{title}</h1>
-        <p className="text-lg text-base-content/75">{subtitle}</p>
+        <h1 className="text-5xl text-base-content font-bold">{title}</h1>
+        <p className="text-lg">{subtitle}</p>
 
-        <div className="w-fit mx-auto flex items-center gap-4">
+        <div className="w-fit flex items-center gap-4">
           <div className="flex items-center gap-0.5">
             <button className="btn btn-accent rounded-full font-bold">
               Track Your Parcel
