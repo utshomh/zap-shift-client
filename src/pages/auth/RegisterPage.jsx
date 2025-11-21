@@ -1,6 +1,7 @@
 import { Link, useLocation, useNavigate } from "react-router";
 import { useForm } from "react-hook-form";
 
+import { uploadImage } from "../../services/imgbb";
 import useAuth from "../../hooks/useAuth";
 import alert from "../../lib/alert";
 import SocialLogin from "../../ui/auth/SocialLogin";
@@ -12,15 +13,18 @@ const RegisterPage = () => {
     reset,
     formState: { errors, isSubmitting },
   } = useForm();
-  const { registerUser } = useAuth();
+  const { registerUser, updateUser } = useAuth();
   const navigate = useNavigate();
   const { state } = useLocation();
 
   const handleRegister = async (data) => {
-    const { email, password } = data;
+    const { email, password, displayName, image } = data;
+
     try {
+      const photoURL = await uploadImage(image[0]);
       await registerUser(email, password);
-      alert.success(
+      await updateUser({ displayName, photoURL });
+      await alert.success(
         "Registered!",
         "Your account has been created successfully."
       );
@@ -98,11 +102,16 @@ const RegisterPage = () => {
           <div className="space-y-1">
             <label className="text-base font-semibold">Profile Image:</label>
             <input
-              {...register("profileImage")}
+              {...register("image", { required: "Image is Required" })}
               type="file"
               accept="image/*"
               className="file-input w-full"
             />
+            {errors.image && (
+              <p className="text-error text-xs font-semibold">
+                {errors.image.message}
+              </p>
+            )}
           </div>
 
           <p className="text-center">
