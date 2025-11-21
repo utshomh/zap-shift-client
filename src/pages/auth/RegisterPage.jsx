@@ -42,7 +42,7 @@ const RegisterPage = () => {
     <div className="p-4 bg-base-100 rounded-xl shadow-md">
       <h1 className="text-3xl font-bold mb-6 text-center">Register</h1>
 
-      <form onSubmit={handleSubmit(handleRegister)}>
+      <form onSubmit={handleSubmit(handleRegister)} className="space-y-4">
         <fieldset className="space-y-4">
           <div className="space-y-1">
             <label className="text-base font-semibold">Display Name:</label>
@@ -113,26 +113,26 @@ const RegisterPage = () => {
               </p>
             )}
           </div>
-
-          <p className="text-center">
-            Already have an account?{" "}
-            <Link to="/login" className="link link-hover">
-              Login
-            </Link>
-          </p>
-
-          <button
-            type="submit"
-            className={`btn w-full ${
-              isSubmitting ? "btn-disabled cursor-not-allowed" : "btn-neutral"
-            }`}
-            disabled={isSubmitting}
-          >
-            {isSubmitting ? "Registering..." : "Register"}
-          </button>
-
-          <SocialLogin />
         </fieldset>
+
+        <p className="text-center">
+          Already have an account?{" "}
+          <Link to="/login" className="link link-hover">
+            Login
+          </Link>
+        </p>
+
+        <button
+          type="submit"
+          className={`btn w-full ${
+            isSubmitting ? "btn-disabled cursor-not-allowed" : "btn-neutral"
+          }`}
+          disabled={isSubmitting}
+        >
+          {isSubmitting ? "Registering..." : "Register"}
+        </button>
+
+        <SocialLogin />
       </form>
     </div>
   );

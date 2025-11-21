@@ -35,7 +35,7 @@ const LoginPage = () => {
     <div className="p-4 bg-base-100 rounded-xl shadow-md">
       <h1 className="text-3xl font-bold mb-6 text-center">Login</h1>
 
-      <form onSubmit={handleSubmit(handleLogin)}>
+      <form onSubmit={handleSubmit(handleLogin)} className="space-y-4">
         <fieldset className="space-y-4">
           <div className="space-y-1">
             <label className="text-base font-semibold">Email:</label>
@@ -74,32 +74,32 @@ const LoginPage = () => {
               </p>
             )}
           </div>
-
-          <div>
-            <Link to="reset-password" className="link link-hover">
-              Forgot password?
-            </Link>
-          </div>
-
-          <p className="text-center">
-            Don't have an account?{" "}
-            <Link to="/register" className="link link-hover">
-              Register
-            </Link>
-          </p>
-
-          <button
-            type="submit"
-            className={`btn w-full ${
-              isSubmitting ? "btn-disabled cursor-not-allowed" : "btn-neutral"
-            }`}
-            disabled={isSubmitting}
-          >
-            {isSubmitting ? "Login in..." : "Login"}
-          </button>
-
-          <SocialLogin />
         </fieldset>
+
+        <div>
+          <Link to="reset-password" className="link link-hover">
+            Forgot password?
+          </Link>
+        </div>
+
+        <p className="text-center">
+          Don't have an account?{" "}
+          <Link to="/register" className="link link-hover">
+            Register
+          </Link>
+        </p>
+
+        <button
+          type="submit"
+          className={`btn w-full ${
+            isSubmitting ? "btn-disabled cursor-not-allowed" : "btn-neutral"
+          }`}
+          disabled={isSubmitting}
+        >
+          {isSubmitting ? "Login in..." : "Login"}
+        </button>
+
+        <SocialLogin />
       </form>
     </div>
   );

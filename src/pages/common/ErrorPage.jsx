@@ -1,6 +1,8 @@
 import { useNavigate, useRouteError } from "react-router";
 import { FiArrowLeft } from "react-icons/fi";
 
+import errorImage from "../../assets/images/error.png";
+
 export default function ErrorPage() {
   const navigate = useNavigate();
   const error = useRouteError();
@@ -15,19 +17,16 @@ export default function ErrorPage() {
 
   return (
     <>
-      <div className="min-h-screen flex flex-col items-center justify-center gap-3 bg-base-200 text-base-content px-4">
-        <h1 className="text-8xl font-extrabold text-primary">{status}</h1>
+      <div className="min-h-screen flex flex-col items-center justify-center gap-3 bg-base-200 text-base-content/80 px-4">
+        <img src={errorImage} className="w-full max-w-36 h-auto" />
 
-        <h2 className="text-3xl md:text-4xl font-semibold text-secondary text-center">
+        <h1 className="text-7xl font-extrabold">{status}</h1>
+
+        <h2 className="text-3xl md:text-4xl font-semibold text-center">
           {status === 404 ? "Oops! Page Not Found" : "Something Went Wrong"}
         </h2>
 
-        <p
-          className="text-center max-w-md"
-          initial={{ opacity: 0, y: 25 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.25 }}
-        >
+        <p className="text-center max-w-md">
           {status === 404
             ? "The page you’re looking for doesn’t exist."
             : statusText}
@@ -35,7 +34,7 @@ export default function ErrorPage() {
 
         <button
           onClick={goBack}
-          className="btn btn-primary btn-lg flex items-center gap-2"
+          className="btn btn-accent btn-lg flex items-center gap-2"
         >
           <FiArrowLeft size={20} /> Go Back
         </button>

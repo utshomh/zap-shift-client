@@ -1,5 +1,6 @@
 import { Link, NavLink } from "react-router";
 import { MdMenu } from "react-icons/md";
+import { PiArrowUpRightFill } from "react-icons/pi";
 
 import useAuth from "../../hooks/useAuth";
 import alert from "../../lib/alert";
@@ -8,6 +9,7 @@ import Logo from "../shared/Logo";
 const navLinksData = [
   { path: "/", label: "Home" },
   { path: "/coverage", label: "Coverage" },
+  { path: "/send-parcel", label: "Send Parcel" },
   { path: "/about", label: "About" },
 ];
 
@@ -16,7 +18,7 @@ const navLinks = navLinksData.map((link, index) => (
     <NavLink
       to={link.path}
       className={({ isActive }) =>
-        ` ${isActive ? "badge-ghost font-bold" : "font-semibold"}`
+        ` ${isActive ? "bg-accent font-bold" : "font-semibold"} rounded-full`
       }
     >
       {link.label}
@@ -71,12 +73,20 @@ const Navbar = () => {
             Logout
           </button>
         ) : (
-          <div className="flex items-center gap-2">
-            <Link to="/login" className="btn btn-outline">
+          <div className="w-fit flex items-center gap-4">
+            <Link
+              to="/login"
+              className="btn btn-outline border-2 border-base-200 rounded-lg"
+            >
               Sign In
             </Link>
-            <Link to="/be-a-rider" className="btn btn-accent">
-              Be a Rider
+            <Link to="/register" className="flex items-center gap-0.5">
+              <button className="btn btn-accent rounded-lg font-bold">
+                Sign Up
+              </button>
+              <span className="bg-black text-accent p-2 rounded-full">
+                <PiArrowUpRightFill />
+              </span>
             </Link>
           </div>
         )}

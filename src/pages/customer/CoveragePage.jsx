@@ -4,14 +4,18 @@ import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 
 const defaultPosition = [23.685, 90.3563];
+const defaultZoom = 6.5;
 
 const CoveragePage = () => {
   const warehouses = useLoaderData();
   const [position, setPosition] = useState(defaultPosition);
+  const [zoom, setZoom] = useState(defaultZoom);
   const searchInputRef = useRef();
   const mapRef = useRef();
 
-  const handleSearch = () => {
+  const handleSearch = (e) => {
+    e.preventDefault();
+
     const searchTerm = searchInputRef.current.value;
     const warehouse = warehouses.find((warehouse) =>
       warehouse.district.toLowerCase().includes(searchTerm.toLowerCase())
@@ -20,35 +24,38 @@ const CoveragePage = () => {
     setPosition(
       warehouse ? [warehouse.latitude, warehouse.longitude] : defaultPosition
     );
-    mapRef.current.flyTo(position, 12);
+    setZoom(searchTerm ? 12 : defaultZoom);
+
+    mapRef.current.flyTo(position, zoom);
   };
 
   return (
     <div className="space-y-4">
-      <h2 className="text-3xl font-bold text-center text-base-content">
-        We are Everywhere
+      <h2 className="text-3xl font-bold text-base-content">
+        We are available in 64 districts
       </h2>
 
-      <p className="text-center">
-        We have warehouse in every single city of Bangladesh.
-      </p>
-
-      <div className="mx-auto w-full max-w-md flex justify-center">
+      <form
+        className="relative w-full max-w-sm flex justify-center rounded-full"
+        onSubmit={handleSearch}
+      >
         <input
           ref={searchInputRef}
           type="text"
           placeholder="Search warehouse by district names"
-          onChange={handleSearch}
-          className="input input-bordered w-full rounded-lg border-gray-300 focus:border-primary focus:ring focus:ring-primary/20 placeholder-gray-400 shadow-md transition-all duration-200 bg-base-100"
+          className="input input-bordered px-4 w-full rounded-full border-gray-300 focus:border-primary focus:ring focus:ring-primary/20 placeholder-gray-400 shadow-md transition-all duration-200 bg-base-100"
         />
-      </div>
+        <button className="absolute top-0 right-0 btn btn-accent rounded-full z-10 px-4">
+          Search
+        </button>
+      </form>
 
       <MapContainer
         ref={mapRef}
         center={position}
-        zoom={8}
+        zoom={defaultZoom}
         scrollWheelZoom={false}
-        className="w-full h-[800px] rounded-xl border-2 border-base-100"
+        className="w-full h-[500px] rounded-xl border-2 border-base-100"
       >
         <TileLayer
           attribution="&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a>"

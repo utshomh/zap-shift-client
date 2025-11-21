@@ -11,11 +11,11 @@ const socialLinks = [
 
 const Footer = () => {
   return (
-    <footer className="footer footer-horizontal footer-center bg-base-100 p-10 rounded-xl">
+    <footer className="footer footer-horizontal footer-center bg-neutral text-neutral-content p-10 rounded-xl">
       <aside>
         <Logo />
         <p className="font-bold">Delivering reliably since 2020</p>
-        <p>Copyright © {new Date().getFullYear()} - All right reserved</p>
+        <p>Copyright © {new Date().getFullYear()} - All Right Reserved</p>
       </aside>
       <nav>
         <div className="flex items-center gap-4">

@@ -6,14 +6,15 @@ import PrivateRoute from "./PrivateRoute";
 import DefaultLayout from "../layouts/DefaultLayout";
 import RootLayout from "../layouts/RootLayout";
 import AuthLayout from "../layouts/AuthLayout";
-// General Pages
-import HomePage from "../pages/common/HomePage";
-import CoveragePage from "../pages/common/CoveragePage";
+// Customer Pages
+import HomePage from "../pages/customer/HomePage";
+import CoveragePage from "../pages/customer/CoveragePage";
+import SendParcelPage from "../pages/customer/SendParcelPage";
 // Auth Pages
 import LoginPage from "../pages/auth/LoginPage";
 import RegisterPage from "../pages/auth/RegisterPage";
-// Special Pages
-import ErrorPage from "../pages/error/ErrorPage";
+// Common Pages
+import ErrorPage from "../pages/common/ErrorPage";
 import LoadingPage from "../pages/common/LoadingPage";
 
 const router = createBrowserRouter([
@@ -34,12 +35,13 @@ const router = createBrowserRouter([
             loader: warehouses.getAll,
           },
           {
-            path: "be-a-rider",
+            path: "send-parcel",
             element: (
               <PrivateRoute>
-                <LoadingPage />
+                <SendParcelPage />
               </PrivateRoute>
             ),
+            loader: warehouses.getAll,
           },
         ],
       },
