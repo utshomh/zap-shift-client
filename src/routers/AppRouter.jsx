@@ -1,21 +1,22 @@
+import { lazy } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router";
 
 import * as warehouses from "../lib/api/warehouses";
 import PrivateRoute from "./PrivateRoute";
 // Layouts
-import DefaultLayout from "../layouts/DefaultLayout";
-import RootLayout from "../layouts/RootLayout";
-import AuthLayout from "../layouts/AuthLayout";
+const DefaultLayout = lazy(() => import("../layouts/DefaultLayout"));
+const RootLayout = lazy(() => import("../layouts/RootLayout"));
+const AuthLayout = lazy(() => import("../layouts/AuthLayout"));
 // Customer Pages
-import HomePage from "../pages/customer/HomePage";
-import CoveragePage from "../pages/customer/CoveragePage";
-import SendParcelPage from "../pages/customer/SendParcelPage";
+const HomePage = lazy(() => import("../pages/customer/HomePage"));
+const CoveragePage = lazy(() => import("../pages/customer/CoveragePage"));
+const SendParcelPage = lazy(() => import("../pages/customer/SendParcelPage"));
 // Auth Pages
-import LoginPage from "../pages/auth/LoginPage";
-import RegisterPage from "../pages/auth/RegisterPage";
+const LoginPage = lazy(() => import("../pages/auth/LoginPage"));
+const RegisterPage = lazy(() => import("../pages/auth/RegisterPage"));
 // Common Pages
-import ErrorPage from "../pages/common/ErrorPage";
-import LoadingPage from "../pages/common/LoadingPage";
+const ErrorPage = lazy(() => import("../pages/common/ErrorPage"));
+const LoadingPage = lazy(() => import("../pages/common/LoadingPage"));
 
 const router = createBrowserRouter([
   {

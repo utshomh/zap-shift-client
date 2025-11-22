@@ -5,4 +5,17 @@ import tailwindcss from "@tailwindcss/vite";
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), tailwindcss()],
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          react: ["react", "react-dom"],
+          firebase: ["firebase"],
+          leaflet: ["leaflet", "react-leaflet"],
+          swiper: ["swiper"],
+          sweetalert2: ["sweetalert2"],
+        },
+      },
+    },
+  },
 });
