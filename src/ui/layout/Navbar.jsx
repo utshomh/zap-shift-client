@@ -6,28 +6,34 @@ import useAuth from "../../hooks/useAuth";
 import alert from "../../lib/utils/alert";
 import Logo from "../shared/Logo";
 
-const navLinksData = [
+const privateLinks = [
   { path: "/", label: "Home" },
-  { path: "/coverage", label: "Coverage" },
   { path: "/send-parcel", label: "Send Parcel" },
+  { path: "/dashboard/my-parcels", label: "My Parcels" },
+  { path: "/coverage", label: "Coverage" },
   { path: "/about", label: "About" },
 ];
 
-const navLinks = navLinksData.map((link, index) => (
-  <li key={index}>
-    <NavLink
-      to={link.path}
-      className={({ isActive }) =>
-        ` ${isActive ? "bg-accent font-bold" : "font-semibold"} rounded-full`
-      }
-    >
-      {link.label}
-    </NavLink>
-  </li>
-));
+const publicLinks = [
+  { path: "/", label: "Home" },
+  { path: "/coverage", label: "Coverage" },
+  { path: "/about", label: "About" },
+];
 
 const Navbar = () => {
   const { user, logoutUser } = useAuth();
+  const navLinks = (user ? privateLinks : publicLinks).map((link, index) => (
+    <li key={index}>
+      <NavLink
+        to={link.path}
+        className={({ isActive }) =>
+          ` ${isActive ? "bg-accent font-bold" : "font-semibold"} rounded-full`
+        }
+      >
+        {link.label}
+      </NavLink>
+    </li>
+  ));
 
   const handleLogout = async () => {
     try {

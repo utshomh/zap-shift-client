@@ -3,6 +3,8 @@ import { createBrowserRouter, RouterProvider } from "react-router";
 
 import * as warehouses from "../lib/api/warehouses";
 import PrivateRoute from "./PrivateRoute";
+import DashboardLayout from "../layouts/DashboardLayout";
+import MyParcelsPage from "../pages/dashboard/MyParcelsPage";
 // Layouts
 const DefaultLayout = lazy(() => import("../layouts/DefaultLayout"));
 const RootLayout = lazy(() => import("../layouts/RootLayout"));
@@ -52,6 +54,20 @@ const router = createBrowserRouter([
         children: [
           { path: "login", element: <LoginPage /> },
           { path: "register", element: <RegisterPage /> },
+        ],
+      },
+      {
+        path: "dashboard/",
+        element: (
+          <PrivateRoute>
+            <DashboardLayout />
+          </PrivateRoute>
+        ),
+        children: [
+          {
+            path: "my-parcels",
+            element: <MyParcelsPage />,
+          },
         ],
       },
     ],
