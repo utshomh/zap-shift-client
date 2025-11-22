@@ -3,6 +3,7 @@ import { useLoaderData } from "react-router";
 
 import calculateCharge from "../../lib/utils/calculateCharge";
 import alert from "../../lib/utils/alert";
+import useAxiosSecured from "../../hooks/useAxiosSecured";
 
 const SendParcelPage = () => {
   const {
@@ -12,6 +13,7 @@ const SendParcelPage = () => {
     control,
     formState: { errors, isSubmitting },
   } = useForm();
+  const axios = useAxiosSecured();
   const warehouses = useLoaderData();
   const regions = [...new Set(warehouses.map((warehouse) => warehouse.region))];
 
@@ -32,8 +34,21 @@ const SendParcelPage = () => {
       "Agree with the cost?",
       `Your parcel delivery charge will be: ${charge}. Do you wanna proceed?`,
       async () => {
-        alert.success("Added!", "Successfully added your parcel.");
-        reset();
+        try {
+          const insertedParcel = await axios
+            .post("/parcels", { ...data, charge })
+            .then((res) => res.data);
+          alert.success(
+            "Added!",
+            `Successfully added your parcel: ${insertedParcel.parcelName}.`
+          );
+          reset();
+        } catch (error) {
+          alert.error(
+            "Oops!",
+            error.message || "Something went wrong! Please try again."
+          );
+        }
       }
     );
   };
