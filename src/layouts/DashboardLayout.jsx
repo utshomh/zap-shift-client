@@ -6,13 +6,13 @@ const DashboardLayout = () => {
     <div className="drawer lg:drawer-open gap-2">
       <input id="drawer" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content">
-        <nav className="navbar w-full bg-base-100">
+        <nav className="navbar w-full bg-base-100 rounded-xl">
           <label
             htmlFor="drawer"
             aria-label="open sidebar"
             className="btn btn-square btn-ghost"
           >
-            <HiMenu className="my-1.5 inline-block w-6 h-6" />
+            <HiMenu className="my-1.5 inline-block w-4 h-4" />
           </label>
           <div className="px-4">Dashboard</div>
         </nav>
@@ -27,7 +27,7 @@ const DashboardLayout = () => {
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <div className="flex min-h-full flex-col items-start bg-base-200 is-drawer-close:w-14 is-drawer-open:w-64">
+        <div className="flex min-h-full flex-col items-start bg-base-100 is-drawer-close:w-14 is-drawer-open:w-64 rounded-xl">
           <ul className="menu w-full grow">
             <li>
               <Link
@@ -35,7 +35,7 @@ const DashboardLayout = () => {
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                 data-tip="Homepage"
               >
-                <HiHome className="my-1.5 inline-block w-6 h-6" />
+                <HiHome className="my-1.5 inline-block w-4 h-4" />
                 <span className="is-drawer-close:hidden">Homepage</span>
               </Link>
             </li>
@@ -46,7 +46,7 @@ const DashboardLayout = () => {
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                 data-tip="My Parcels"
               >
-                <HiInbox className="my-1.5 inline-block w-6 h-6" />
+                <HiInbox className="my-1.5 inline-block w-4 h-4" />
                 <span className="is-drawer-close:hidden">My Parcels</span>
               </Link>
             </li>
@@ -57,7 +57,7 @@ const DashboardLayout = () => {
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                 data-tip="Add Parcel"
               >
-                <HiPlusCircle className="my-1.5 inline-block w-6 h-6" />
+                <HiPlusCircle className="my-1.5 inline-block w-4 h-4" />
                 <span className="is-drawer-close:hidden">Add Parcel</span>
               </Link>
             </li>
@@ -67,7 +67,7 @@ const DashboardLayout = () => {
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                 data-tip="Settings"
               >
-                <HiCog className="my-1.5 inline-block w-6 h-6" />
+                <HiCog className="my-1.5 inline-block w-4 h-4" />
                 <span className="is-drawer-close:hidden">Settings</span>
               </button>
             </li>
