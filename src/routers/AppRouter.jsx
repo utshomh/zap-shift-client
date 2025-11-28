@@ -13,6 +13,7 @@ const AuthLayout = lazy(() => import("../layouts/AuthLayout"));
 const HomePage = lazy(() => import("../pages/customer/HomePage"));
 const CoveragePage = lazy(() => import("../pages/customer/CoveragePage"));
 const SendParcelPage = lazy(() => import("../pages/customer/SendParcelPage"));
+const AboutPage = lazy(() => import("../pages/customer/AboutPage"));
 // Auth Pages
 const LoginPage = lazy(() => import("../pages/auth/LoginPage"));
 const RegisterPage = lazy(() => import("../pages/auth/RegisterPage"));
@@ -38,13 +39,8 @@ const router = createBrowserRouter([
             loader: warehouses.getAll,
           },
           {
-            path: "send-parcel",
-            element: (
-              <PrivateRoute>
-                <SendParcelPage />
-              </PrivateRoute>
-            ),
-            loader: warehouses.getAll,
+            path: "about",
+            element: <AboutPage />,
           },
         ],
       },
@@ -67,6 +63,15 @@ const router = createBrowserRouter([
           {
             path: "my-parcels",
             element: <MyParcelsPage />,
+          },
+          {
+            path: "add-parcel",
+            element: (
+              <PrivateRoute>
+                <SendParcelPage />
+              </PrivateRoute>
+            ),
+            loader: warehouses.getAll,
           },
         ],
       },

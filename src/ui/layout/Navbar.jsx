@@ -2,23 +2,10 @@ import { Link, NavLink } from "react-router";
 import { MdMenu } from "react-icons/md";
 import { PiArrowUpRightFill } from "react-icons/pi";
 
+import { privateLinks, publicLinks } from "../../data";
 import useAuth from "../../hooks/useAuth";
 import alert from "../../lib/utils/alert";
 import Logo from "../shared/Logo";
-
-const privateLinks = [
-  { path: "/", label: "Home" },
-  { path: "/send-parcel", label: "Send Parcel" },
-  { path: "/dashboard/my-parcels", label: "My Parcels" },
-  { path: "/coverage", label: "Coverage" },
-  { path: "/about", label: "About" },
-];
-
-const publicLinks = [
-  { path: "/", label: "Home" },
-  { path: "/coverage", label: "Coverage" },
-  { path: "/about", label: "About" },
-];
 
 const Navbar = () => {
   const { user, logoutUser } = useAuth();
