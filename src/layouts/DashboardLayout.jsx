@@ -4,9 +4,9 @@ import SideBar from "../ui/layout/SideBar";
 
 const DashboardLayout = () => {
   return (
-    <div className="drawer lg:drawer-open gap-2">
+    <div className="drawer lg:drawer-open gap-4">
       <input id="drawer" type="checkbox" className="drawer-toggle" />
-      <div className="drawer-content">
+      <div className="drawer-content space-y-4">
         <nav className="navbar w-full bg-base-100 rounded-xl">
           <label
             htmlFor="drawer"
@@ -17,7 +17,7 @@ const DashboardLayout = () => {
           </label>
           <div className="px-4">Dashboard</div>
         </nav>
-        <div className="p-4">
+        <div>
           <Outlet />
         </div>
       </div>

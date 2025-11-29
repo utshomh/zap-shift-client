@@ -50,13 +50,37 @@ const MyParcelsPage = () => {
     );
   };
 
+  const handlePayment = async (parcel) => {
+    await alert.confirm(
+      "Confirm Payment",
+      "This action cannot be undone.",
+      async () => {
+        try {
+          const payment = await axios
+            .post("/payment-checkout", parcel)
+            .then((res) => res.data);
+          if (payment) {
+            window.location.assign(payment.url);
+          } else {
+            alert.error("Oops!", "Payment is not working. Please try again.");
+          }
+        } catch (error) {
+          alert.error(
+            "Oops!",
+            error.message || "Something went wrong. Please try again."
+          );
+        }
+      }
+    );
+  };
+
   if (isError) throw new Error(`Failed to load Parcels`);
 
   if (isLoading) return <Loader />;
 
   return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">My Parcels</h1>
+    <div className="p-8 bg-base-100 rounded-xl space-y-6">
+      <h1 className="text-2xl font-bold">My Parcels</h1>
 
       <div className="overflow-x-auto">
         <table className="table">
@@ -66,6 +90,7 @@ const MyParcelsPage = () => {
               <th>Parcel Name</th>
               <th>Parcel Type</th>
               <th>Total Charge</th>
+              <th>Payment Status</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -76,6 +101,21 @@ const MyParcelsPage = () => {
                 <td>{parcel.parcelName}</td>
                 <td>{parcel.parcelType}</td>
                 <td>{parcel.charge}</td>
+                <td>
+                  {parcel.paymentStatus === "paid" ? (
+                    <div className="badge badge-sm badge-success font-bold">
+                      Paid
+                    </div>
+                  ) : (
+                    <button
+                      // to={`/dashboard/payment/${parcel._id}`}
+                      className="btn btn-sm btn-primary"
+                      onClick={() => handlePayment(parcel)}
+                    >
+                      Pay
+                    </button>
+                  )}
+                </td>
                 <td className="join">
                   <button className="join-item btn btn-square">
                     <HiOutlineEye className="text-xl" />
