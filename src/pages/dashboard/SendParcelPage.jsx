@@ -1,5 +1,5 @@
 import { useForm, useWatch } from "react-hook-form";
-import { useLoaderData } from "react-router";
+import { useLoaderData, useNavigate } from "react-router";
 
 import calculateCharge from "../../lib/utils/calculateCharge";
 import alert from "../../lib/utils/alert";
@@ -14,6 +14,7 @@ const SendParcelPage = () => {
     formState: { errors, isSubmitting },
   } = useForm();
   const axios = useAxiosSecured();
+  const navigate = useNavigate();
   const warehouses = useLoaderData();
   const regions = [...new Set(warehouses.map((warehouse) => warehouse.region))];
 
@@ -43,6 +44,7 @@ const SendParcelPage = () => {
             `Successfully added your parcel: ${insertedParcel.parcelName}.`
           );
           reset();
+          navigate("/dashboard/my-parcels");
         } catch (error) {
           alert.error(
             "Oops!",

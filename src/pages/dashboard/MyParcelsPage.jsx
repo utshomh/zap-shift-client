@@ -108,7 +108,6 @@ const MyParcelsPage = () => {
                     </div>
                   ) : (
                     <button
-                      // to={`/dashboard/payment/${parcel._id}`}
                       className="btn btn-sm btn-primary"
                       onClick={() => handlePayment(parcel)}
                     >
