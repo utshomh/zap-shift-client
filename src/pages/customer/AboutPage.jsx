@@ -1,4 +1,5 @@
 import { Tab, TabPanel, TabList, Tabs } from "react-tabs";
+
 import formatText from "../../lib/utils/formatText";
 import { tabs } from "../../data";
 

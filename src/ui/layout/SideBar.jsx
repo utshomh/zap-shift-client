@@ -1,5 +1,11 @@
 import { Link } from "react-router";
-import { HiCog, HiHome, HiInbox, HiPlusCircle } from "react-icons/hi";
+import {
+  HiCog,
+  HiCreditCard,
+  HiHome,
+  HiInbox,
+  HiPlusCircle,
+} from "react-icons/hi";
 
 const SideBar = () => {
   return (
@@ -35,6 +41,17 @@ const SideBar = () => {
           >
             <HiPlusCircle className="my-1.5 inline-block w-4 h-4" />
             <span className="is-drawer-close:hidden">Add Parcel</span>
+          </Link>
+        </li>
+
+        <li>
+          <Link
+            to="/dashboard/payment-history"
+            className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+            data-tip="Payment History"
+          >
+            <HiCreditCard className="my-1.5 inline-block w-4 h-4" />
+            <span className="is-drawer-close:hidden">Payment History</span>
           </Link>
         </li>
 

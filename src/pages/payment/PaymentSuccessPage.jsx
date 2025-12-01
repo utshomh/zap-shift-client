@@ -4,7 +4,6 @@ import { useQuery } from "@tanstack/react-query";
 import { FiCopy, FiCheck } from "react-icons/fi";
 
 import useAxiosSecured from "../../hooks/useAxiosSecured";
-
 import Loader from "../../ui/shared/Loader";
 
 const PaymentSuccessPage = () => {
@@ -19,9 +18,7 @@ const PaymentSuccessPage = () => {
   } = useQuery({
     queryKey: ["payment", sessionId],
     queryFn: () =>
-      axios
-        .patch(`/verify-payment?sessionId=${sessionId}`)
-        .then((res) => res.data),
+      axios.patch(`/payments?sessionId=${sessionId}`).then((res) => res.data),
   });
 
   const handleCopy = async (text) => {

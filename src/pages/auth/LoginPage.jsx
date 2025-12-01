@@ -1,8 +1,8 @@
 import { Link, useLocation, useNavigate } from "react-router";
 import { useForm } from "react-hook-form";
 
-import useAuth from "../../hooks/useAuth";
 import alert from "../../lib/utils/alert";
+import useAuth from "../../hooks/useAuth";
 import SocialLogin from "../../ui/auth/SocialLogin";
 
 const LoginPage = () => {

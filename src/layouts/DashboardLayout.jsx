@@ -1,5 +1,6 @@
 import { Outlet } from "react-router";
 import { HiMenu } from "react-icons/hi";
+
 import SideBar from "../ui/layout/SideBar";
 
 const DashboardLayout = () => {

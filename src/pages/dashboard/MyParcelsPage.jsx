@@ -15,8 +15,9 @@ const MyParcelsPage = () => {
     isError,
     refetch,
   } = useQuery({
-    queryKey: ["my-parcels", user.email],
-    queryFn: () => axios.get("/parcels").then((res) => res.data),
+    queryKey: ["parcels", user.email],
+    queryFn: () =>
+      axios.get(`/parcels?senderEmail=${user.email}`).then((res) => res.data),
   });
 
   const handleDelete = async (id) => {
@@ -57,8 +58,9 @@ const MyParcelsPage = () => {
       async () => {
         try {
           const payment = await axios
-            .post("/payment-checkout", parcel)
-            .then((res) => res.data);
+            .post("/payments", parcel)
+            .then((res) => res.data)
+            .catch((e) => console.log(e));
           if (payment) {
             window.location.assign(payment.url);
           } else {
