@@ -14,6 +14,7 @@ const MyParcelsPage = () => {
     isLoading,
     isError,
     refetch,
+    error,
   } = useQuery({
     queryKey: ["parcels", user.email],
     queryFn: () =>
@@ -76,7 +77,7 @@ const MyParcelsPage = () => {
     );
   };
 
-  if (isError) throw new Error(`Failed to load Parcels`);
+  if (isError) throw new Error(error.message);
 
   if (isLoading) return <Loader />;
 
