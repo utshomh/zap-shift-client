@@ -23,12 +23,12 @@ const useAxiosSecured = () => {
       (response) => response,
       async (error) => {
         if (error.status === 401 || error.status === 403) {
-          await logoutUser();
+          // await logoutUser();
           alert.error(
             "Access Denied!",
             "Looks like you're not allowed in here. Please log in again."
           );
-          navigate("/login");
+          // navigate("/login");
         }
         return Promise.reject(error);
       }

@@ -5,6 +5,7 @@ import { FiCheck, FiCopy } from "react-icons/fi";
 import useAxiosSecured from "../../hooks/useAxiosSecured";
 import useAuth from "../../hooks/useAuth";
 import Loader from "../../ui/shared/Loader";
+import dayjs from "dayjs";
 
 const PaymentHistoryPage = () => {
   const axios = useAxiosSecured();
@@ -15,7 +16,7 @@ const PaymentHistoryPage = () => {
     isLoading,
     isError,
   } = useQuery({
-    queryKey: ["payments", user.email],
+    queryKey: ["payments", user],
     queryFn: () =>
       axios
         .get(`/payments?customerEmail=${user.email}`)
@@ -44,6 +45,7 @@ const PaymentHistoryPage = () => {
               <th>Parcel Name</th>
               <th>Total Charge</th>
               <th>Transaction ID</th>
+              <th>Paid At</th>
             </tr>
           </thead>
           <tbody>
@@ -66,6 +68,9 @@ const PaymentHistoryPage = () => {
                       )}
                     </button>
                   </div>
+                </td>
+                <td>
+                  {dayjs(payment.paidAt).format("DD/MM/YYYY | h:mm:ss A")}
                 </td>
               </tr>
             ))}

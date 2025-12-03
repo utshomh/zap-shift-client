@@ -16,7 +16,7 @@ const MyParcelsPage = () => {
     refetch,
     error,
   } = useQuery({
-    queryKey: ["parcels", user.email],
+    queryKey: ["parcels", user],
     queryFn: () =>
       axios.get(`/parcels?senderEmail=${user.email}`).then((res) => res.data),
   });

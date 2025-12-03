@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 
 import { uploadImage } from "../../services/imgbb";
 import useAuth from "../../hooks/useAuth";
+import useAxiosSecured from "../../hooks/useAxiosSecured";
 import alert from "../../lib/utils/alert";
 import SocialLogin from "../../ui/auth/SocialLogin";
 
@@ -16,6 +17,7 @@ const RegisterPage = () => {
   const { registerUser, updateUser } = useAuth();
   const navigate = useNavigate();
   const { state } = useLocation();
+  const axios = useAxiosSecured();
 
   const handleRegister = async (data) => {
     const { email, password, displayName, image } = data;
@@ -24,6 +26,7 @@ const RegisterPage = () => {
       const photoURL = await uploadImage(image[0]);
       await registerUser(email, password);
       await updateUser({ displayName, photoURL });
+      await axios.post("/users", { email, displayName, photoURL });
       await alert.success(
         "Registered!",
         "Your account has been created successfully."

@@ -6,7 +6,9 @@ import Logo from "../ui/shared/Logo";
 const AuthLayout = () => {
   return (
     <>
-      <Logo />
+      <div className="p-4">
+        <Logo />
+      </div>
       <div className="my-auto mx-auto w-fit flex flex-col-reverse md:flex-row items-center md:items-start justify-center gap-6">
         <div className="flex-1 w-full max-w-md">
           <Outlet />

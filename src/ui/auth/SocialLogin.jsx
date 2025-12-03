@@ -2,16 +2,20 @@ import { useLocation, useNavigate } from "react-router";
 import { FcGoogle } from "react-icons/fc";
 
 import useAuth from "../../hooks/useAuth";
+import useAxiosSecured from "../../hooks/useAxiosSecured";
 import alert from "../../lib/utils/alert";
 
 const SocialLogin = () => {
   const { signInWithGoogle } = useAuth();
   const navigate = useNavigate();
   const { state } = useLocation();
+  const axios = useAxiosSecured();
 
   const handleSignIn = async () => {
     try {
-      await signInWithGoogle();
+      const { user } = await signInWithGoogle();
+      const { email, displayName, photoURL } = user;
+      await axios.post("/users", { email, displayName, photoURL });
       alert.success("Singed In!", "You’ve signed in successfully.");
       navigate(state?.redirect || "/");
     } catch (error) {
