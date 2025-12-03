@@ -15,7 +15,7 @@ const PaymentHistoryPage = () => {
     isLoading,
     isError,
   } = useQuery({
-    queryKey: ["payments"],
+    queryKey: ["payments", user.email],
     queryFn: () =>
       axios
         .get(`/payments?customerEmail=${user.email}`)
