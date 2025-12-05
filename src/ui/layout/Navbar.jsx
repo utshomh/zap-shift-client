@@ -14,7 +14,9 @@ const Navbar = () => {
       <NavLink
         to={link.path}
         className={({ isActive }) =>
-          ` ${isActive ? "bg-accent font-bold" : "font-semibold"} rounded-full`
+          `px-4 ${
+            isActive ? "bg-accent font-bold" : "font-semibold"
+          } rounded-full`
         }
       >
         {link.label}
@@ -41,7 +43,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar bg-base-100 shadow-sm rounded-xl">
+    <div className="navbar bg-base-100 shadow-sm rounded-xl px-4">
       <div className="navbar-start gap-2">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">

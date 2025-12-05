@@ -1,70 +1,62 @@
 import { useQuery } from "@tanstack/react-query";
 import { HiOutlineEye, HiOutlinePencil, HiOutlineTrash } from "react-icons/hi";
 
-import alert from "../../lib/utils/alert";
 import useAxiosSecured from "../../hooks/useAxiosSecured";
-import useAuth from "../../hooks/useAuth";
 import Loader from "../../ui/shared/Loader";
+import alert from "../../lib/utils/alert";
 
-const MyParcelsPage = () => {
-  const { user } = useAuth();
+const RidersPage = () => {
   const axios = useAxiosSecured();
   const {
-    data: parcels,
+    data: riders,
     isLoading,
     isError,
     refetch,
     error,
   } = useQuery({
-    queryKey: ["parcels", user],
-    queryFn: () =>
-      axios.get(`/parcels?senderEmail=${user.email}`).then((res) => res.data),
+    queryKey: ["riders", "pending"],
+    queryFn: () => axios.get("/riders").then((res) => res.data),
   });
 
-  const handleDelete = async (id) => {
+  const handleApproval = async (rider) => {
+    const { _id: id, name } = rider;
+
+    try {
+      await axios
+        .patch(`riders/${id}`, { status: "approved" })
+        .then((res) => res.data);
+      alert.success("Approved", `Successfully approved ${name} as a rider.`);
+      await refetch();
+    } catch (error) {
+      alert.error(
+        "Oops!",
+        error.message || "Something went wrong. Please try again."
+      );
+    }
+  };
+
+  const handleDeletion = async (rider) => {
+    const { _id: id, name } = rider;
+
     await alert.confirm(
       "Confirm Deletion",
       "This action cannot be undone.",
       async () => {
         try {
           const data = await axios
-            .delete(`parcels/${id}`)
+            .delete(`riders/${id}`)
             .then((res) => res.data);
           if (data.acknowledged) {
             alert.success(
               "Deletion Successful",
-              "Your parcel has been deleted."
+              `Successfully deleted ${name} from rider list.`
             );
             await refetch();
           } else {
             alert.error(
               "Oops!",
-              "Could not delete the parcel. Please try again."
+              "Could not delete the rider. Please try again."
             );
-          }
-        } catch (error) {
-          alert.error(
-            "Oops!",
-            error.message || "Something went wrong. Please try again."
-          );
-        }
-      }
-    );
-  };
-
-  const handlePayment = async (parcel) => {
-    await alert.confirm(
-      "Confirm Payment",
-      "This action cannot be undone.",
-      async () => {
-        try {
-          const payment = await axios
-            .post("/payments", parcel)
-            .then((res) => res.data);
-          if (payment) {
-            window.location.assign(payment.url);
-          } else {
-            alert.error("Oops!", "Payment is not working. Please try again.");
           }
         } catch (error) {
           alert.error(
@@ -82,39 +74,39 @@ const MyParcelsPage = () => {
 
   return (
     <div className="p-8 bg-base-100 rounded-xl space-y-6">
-      <h1 className="text-2xl font-bold">My Parcels</h1>
+      <h1 className="text-2xl font-bold">Riders</h1>
 
       <div className="overflow-x-auto">
         <table className="table">
           <thead>
             <tr>
               <th>Index</th>
-              <th>Parcel Name</th>
-              <th>Parcel Type</th>
-              <th>Total Charge</th>
-              <th>Payment Status</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Warehouse</th>
+              <th>Status</th>
               <th>Actions</th>
             </tr>
           </thead>
           <tbody>
-            {parcels.map((parcel, index) => (
-              <tr key={parcel._id}>
-                <th>{index + 1}</th>
-                <td>{parcel.parcelName}</td>
-                <td>{parcel.parcelType}</td>
-                <td>{parcel.charge}</td>
+            {riders.map((rider, index) => (
+              <tr key={rider._id}>
+                <td className="font-bold">{index + 1}</td>
+                <td>{rider.name}</td>
+                <td>{rider.email}</td>
+                <td>{rider.warehouse}</td>
                 <td>
-                  {parcel.paymentStatus === "paid" ? (
-                    <div className="badge badge-sm badge-success font-bold">
-                      Paid
-                    </div>
-                  ) : (
+                  {rider.status === "pending" ? (
                     <button
                       className="btn btn-sm btn-primary"
-                      onClick={() => handlePayment(parcel)}
+                      onClick={() => handleApproval(rider)}
                     >
-                      Pay
+                      Approve
                     </button>
+                  ) : (
+                    <div className="badge badge-sm badge-success font-bold">
+                      Active
+                    </div>
                   )}
                 </td>
                 <td className="join">
@@ -128,7 +120,7 @@ const MyParcelsPage = () => {
 
                   <button
                     className="join-item btn btn-square"
-                    onClick={() => handleDelete(parcel._id)}
+                    onClick={() => handleDeletion(rider)}
                   >
                     <HiOutlineTrash className="text-xl" />
                   </button>
@@ -136,11 +128,10 @@ const MyParcelsPage = () => {
               </tr>
             ))}
           </tbody>
-          <tfoot></tfoot>
         </table>
       </div>
     </div>
   );
 };
 
-export default MyParcelsPage;
+export default RidersPage;

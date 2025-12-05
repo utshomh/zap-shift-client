@@ -10,7 +10,8 @@ const AuthLayout = lazy(() => import("../layouts/AuthLayout"));
 const DashboardLayout = lazy(() => import("../layouts/DashboardLayout"));
 // Dashboard Pages
 const MyParcelsPage = lazy(() => import("../pages/dashboard/MyParcelsPage"));
-const SendParcelPage = lazy(() => import("../pages/dashboard/SendParcelPage"));
+const AddParcelPage = lazy(() => import("../pages/dashboard/AddParcelPage"));
+const RidersPage = lazy(() => import("../pages/dashboard/RidersPage"));
 // Payment Pages
 const PaymentPage = lazy(() => import("../pages/payment/PaymentPage"));
 const PaymentHistoryPage = lazy(() =>
@@ -26,7 +27,7 @@ const PaymentCancelledPage = lazy(() =>
 const HomePage = lazy(() => import("../pages/customer/HomePage"));
 const CoveragePage = lazy(() => import("../pages/customer/CoveragePage"));
 const AboutPage = lazy(() => import("../pages/customer/AboutPage"));
-const BeARiderPage = lazy(() => import("../pages/rider/BeARiderPage"));
+const BeARiderPage = lazy(() => import("../pages/customer/BeARiderPage"));
 // Auth Pages
 const LoginPage = lazy(() => import("../pages/auth/LoginPage"));
 const RegisterPage = lazy(() => import("../pages/auth/RegisterPage"));
@@ -92,7 +93,16 @@ const router = createBrowserRouter([
             path: "add-parcel",
             element: (
               <PrivateRoute>
-                <SendParcelPage />
+                <AddParcelPage />
+              </PrivateRoute>
+            ),
+            loader: warehouses.getAll,
+          },
+          {
+            path: "riders",
+            element: (
+              <PrivateRoute>
+                <RidersPage />
               </PrivateRoute>
             ),
             loader: warehouses.getAll,

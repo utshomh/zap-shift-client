@@ -5,7 +5,7 @@ import calculateCharge from "../../lib/utils/calculateCharge";
 import alert from "../../lib/utils/alert";
 import useAxiosSecured from "../../hooks/useAxiosSecured";
 
-const SendParcelPage = () => {
+const AddParcelPage = () => {
   const {
     register,
     handleSubmit,
@@ -57,7 +57,7 @@ const SendParcelPage = () => {
 
   return (
     <div className="p-8 bg-base-100 rounded-xl space-y-6">
-      <h2 className="text-4xl font-bold">Send A Parcel</h2>
+      <h2 className="text-4xl font-bold">Add A Parcel</h2>
       <form
         onSubmit={handleSubmit(sendParcel)}
         className="p-2 w-full space-y-4"
@@ -467,11 +467,11 @@ const SendParcelPage = () => {
           }`}
           disabled={isSubmitting}
         >
-          {isSubmitting ? "Sending..." : " Send Parcel"}
+          {isSubmitting ? "Adding..." : "Add Parcel"}
         </button>
       </form>
     </div>
   );
 };
 
-export default SendParcelPage;
+export default AddParcelPage;
