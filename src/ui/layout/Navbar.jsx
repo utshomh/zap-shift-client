@@ -55,7 +55,9 @@ const Navbar = () => {
           </ul>
         </div>
 
-        <Logo size="sm" />
+        <div className="py-2">
+          <Logo size="sm" />
+        </div>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1 gap-1">{navLinks}</ul>
