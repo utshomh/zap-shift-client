@@ -12,7 +12,7 @@ const socialLinks = [
 const Footer = () => {
   return (
     <footer className="footer footer-horizontal footer-center bg-neutral text-neutral-content p-10 rounded-xl">
-      <aside>
+      <aside className="space-y-1">
         <Logo />
         <p className="font-bold">Delivering reliably since 2020</p>
         <p>Copyright © {new Date().getFullYear()} - All Right Reserved</p>

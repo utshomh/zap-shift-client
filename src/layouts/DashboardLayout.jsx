@@ -2,6 +2,7 @@ import { Outlet } from "react-router";
 import { HiMenu } from "react-icons/hi";
 
 import SideBar from "../ui/layout/SideBar";
+import Logo from "../ui/shared/Logo";
 
 const DashboardLayout = () => {
   return (
@@ -16,7 +17,9 @@ const DashboardLayout = () => {
           >
             <HiMenu className="my-1.5 inline-block w-4 h-4" />
           </label>
-          <div className="px-4">Dashboard</div>
+          <div className="p-2">
+            <Logo size="sm" />
+          </div>
         </nav>
         <div>
           <Outlet />
