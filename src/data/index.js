@@ -76,6 +76,7 @@ export const privateLinks = [
   { path: "/", label: "Home" },
   { path: "/dashboard/my-parcels", label: "Dashboard" },
   { path: "/coverage", label: "Coverage" },
+  { path: "/be-a-rider", label: "Be-A-Rider" },
   { path: "/about", label: "About" },
 ];
 

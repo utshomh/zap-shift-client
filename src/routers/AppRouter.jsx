@@ -26,6 +26,7 @@ const PaymentCancelledPage = lazy(() =>
 const HomePage = lazy(() => import("../pages/customer/HomePage"));
 const CoveragePage = lazy(() => import("../pages/customer/CoveragePage"));
 const AboutPage = lazy(() => import("../pages/customer/AboutPage"));
+const BeARiderPage = lazy(() => import("../pages/rider/BeARiderPage"));
 // Auth Pages
 const LoginPage = lazy(() => import("../pages/auth/LoginPage"));
 const RegisterPage = lazy(() => import("../pages/auth/RegisterPage"));
@@ -54,8 +55,18 @@ const router = createBrowserRouter([
             path: "about",
             element: <AboutPage />,
           },
+          {
+            path: "be-a-rider",
+            element: (
+              <PrivateRoute>
+                <BeARiderPage />
+              </PrivateRoute>
+            ),
+            loader: warehouses.getAll,
+          },
         ],
       },
+
       {
         path: "/",
         element: <AuthLayout />,
@@ -64,6 +75,7 @@ const router = createBrowserRouter([
           { path: "register", element: <RegisterPage /> },
         ],
       },
+
       {
         path: "dashboard/",
         element: (

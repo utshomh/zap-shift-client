@@ -22,9 +22,12 @@ const BannerCard = ({ img, title, subtitle }) => {
               <PiArrowUpRightFill />
             </Link>
           </div>
-          <button className="btn btn-outline border-2 border-base-200 rounded-lg">
+          <Link
+            to="/be-a-rider"
+            className="btn btn-outline border-2 border-base-200 rounded-lg"
+          >
             Be A Rider
-          </button>
+          </Link>
         </div>
       </div>
 
