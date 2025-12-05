@@ -111,9 +111,9 @@ const BeARiderPage = () => {
                 required: "Email is required",
               })}
               defaultValue={user.email}
+              readOnly
               type="text"
               className="input w-full"
-              placeholder="Your Active Email Address"
             />
             {errors.email && (
               <p className="text-error text-xs font-semibold">

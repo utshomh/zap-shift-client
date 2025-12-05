@@ -12,6 +12,7 @@ const DashboardLayout = lazy(() => import("../layouts/DashboardLayout"));
 const MyParcelsPage = lazy(() => import("../pages/dashboard/MyParcelsPage"));
 const AddParcelPage = lazy(() => import("../pages/dashboard/AddParcelPage"));
 const RidersPage = lazy(() => import("../pages/dashboard/RidersPage"));
+const UsersPage = lazy(() => import("../pages/dashboard/UsersPage"));
 // Payment Pages
 const PaymentPage = lazy(() => import("../pages/payment/PaymentPage"));
 const PaymentHistoryPage = lazy(() =>
@@ -106,6 +107,14 @@ const router = createBrowserRouter([
               </PrivateRoute>
             ),
             loader: warehouses.getAll,
+          },
+          {
+            path: "users",
+            element: (
+              <PrivateRoute>
+                <UsersPage />
+              </PrivateRoute>
+            ),
           },
           {
             path: "payment-history",

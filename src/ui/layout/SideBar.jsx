@@ -5,6 +5,7 @@ import {
   FaMotorcycle,
   FaPlusCircle,
   FaRegListAlt,
+  FaUsers,
 } from "react-icons/fa";
 
 const SideBar = () => {
@@ -79,6 +80,21 @@ const SideBar = () => {
           >
             <FaMotorcycle className="my-1.5 inline-block w-4 h-4" />
             <span className="is-drawer-close:hidden">Riders</span>
+          </NavLink>
+        </li>
+
+        <li>
+          <NavLink
+            to="/dashboard/users"
+            className={({ isActive }) =>
+              `is-drawer-close:tooltip is-drawer-close:tooltip-right ${
+                isActive ? "bg-accent" : ""
+              }`
+            }
+            data-tip="Users"
+          >
+            <FaUsers className="my-1.5 inline-block w-4 h-4" />
+            <span className="is-drawer-close:hidden">Users</span>
           </NavLink>
         </li>
       </ul>
